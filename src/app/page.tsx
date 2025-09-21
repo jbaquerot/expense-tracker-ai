@@ -7,10 +7,11 @@ import Navigation from '@/components/Navigation';
 import Dashboard from '@/components/Dashboard';
 import ExpenseForm from '@/components/ExpenseForm';
 import ExpenseList from '@/components/ExpenseList';
+import MonthlyInsights from '@/components/MonthlyInsights';
 
 export default function Home() {
   const { expenses, isLoading, createExpense, editExpense, removeExpense } = useExpenses();
-  const [activeTab, setActiveTab] = useState<'dashboard' | 'expenses'>('dashboard');
+  const [activeTab, setActiveTab] = useState<'dashboard' | 'expenses' | 'insights'>('dashboard');
   const [editingExpense, setEditingExpense] = useState<Expense | null>(null);
 
   const handleCreateExpense = (formData: ExpenseFormData) => {
@@ -51,6 +52,8 @@ export default function Home() {
       <main className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
         {activeTab === 'dashboard' ? (
           <Dashboard expenses={expenses} />
+        ) : activeTab === 'insights' ? (
+          <MonthlyInsights expenses={expenses} />
         ) : (
           <div className="space-y-6">
             <ExpenseForm

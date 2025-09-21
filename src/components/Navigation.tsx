@@ -3,8 +3,8 @@
 import { useState } from 'react';
 
 interface NavigationProps {
-  activeTab: 'dashboard' | 'expenses';
-  onTabChange: (tab: 'dashboard' | 'expenses') => void;
+  activeTab: 'dashboard' | 'expenses' | 'insights';
+  onTabChange: (tab: 'dashboard' | 'expenses' | 'insights') => void;
 }
 
 export default function Navigation({ activeTab, onTabChange }: NavigationProps) {
@@ -44,6 +44,16 @@ export default function Navigation({ activeTab, onTabChange }: NavigationProps) 
                 }`}
               >
                 Expenses
+              </button>
+              <button
+                onClick={() => onTabChange('insights')}
+                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                  activeTab === 'insights'
+                    ? 'bg-blue-100 text-blue-700'
+                    : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                }`}
+              >
+                Insights
               </button>
             </div>
           </div>
@@ -108,6 +118,19 @@ export default function Navigation({ activeTab, onTabChange }: NavigationProps) 
               }`}
             >
               Expenses
+            </button>
+            <button
+              onClick={() => {
+                onTabChange('insights');
+                setIsMobileMenuOpen(false);
+              }}
+              className={`block w-full text-left px-3 py-2 rounded-md text-base font-medium transition-colors ${
+                activeTab === 'insights'
+                  ? 'bg-blue-100 text-blue-700'
+                  : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+              }`}
+            >
+              Insights
             </button>
           </div>
         </div>
